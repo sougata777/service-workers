@@ -1,9 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Service Workers Demo</title>
-</head>
+<html lang="en">
+
+<head></head>
+
 <body>
-<p>Hello Service Worker</p>
+    <p>Registration status: <strong id="status"></strong></p>
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(
+            'service-worker.js', { scope: './' }
+        ).then(function(serviceWorker) {
+            document.getElementById('status').innerHTML =
+                'successful';
+        }).catch(function(error) {
+            document.getElementById('status').innerHTML = error;
+        });
+    } else {
+        document.getElementById('status').innerHTML =
+            'unavailable';
+    }
+    </script>
 </body>
+
 </html>
